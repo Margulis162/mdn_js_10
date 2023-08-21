@@ -14,10 +14,17 @@ function random(min, max) {
 }
 
 // function to generate random color
-
+// original code 
+// function randomRGB() {
+//   return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+// }
+const nonRandColors =[255, 127, 85, 51, 32, 20 ];
 function randomRGB() {
-  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+  return `rgb(${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]},${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]},${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]})`;
+
 }
+
+
 
 class Ball{
   constructor(x,y, velX, velY, color, size){
