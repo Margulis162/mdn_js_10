@@ -117,23 +117,41 @@ class EvilCircle extends Shape {
 
     checkBounds() {
       if ((this.x + this.size) >= width) {
-        this.x =+ 3;
+        this.x -= 50;
+       
       }
     
       if ((this.x - this.size) <= 0) {
-        this.x =+ 3;
+        this.x += 50;
       }
     
       if ((this.y + this.size) >= height) {
-        this.y =+ 3;
+        this.y -= 50;
       }
     
       if ((this.y - this.size) <= 0) {
-        this.y =+ 3;
+        this.y += 50;
       }
     
       // this.x += this.velX;
       // this.y += this.velY;
+    }
+    collisionDetect(){
+      for (const ball of balls){
+        // makes sure we are checking for a different ball 
+        if(ball.exists) {
+          // standart collision detection method for two circles 
+          const dx = this.x -ball.x;
+          const dy = this.y -ball.y;
+          const distance = Math.sqrt(dx*dx + dy*dy);
+
+         
+          if(distance < this.size + ball.size){
+            ball.exists = false;
+            
+          }
+        }
+      }
     }
   }
 
@@ -159,15 +177,24 @@ while (balls.length < 25) {
 
 }
 
+const evil = new EvilCircle(100,100);
+
 function loop() {
   ctx.fillStyle = "rgba(0,0,0, .1)";
   ctx.fillRect(0,0, width, height);
 
   for (const ball of balls){
-    ball.draw();
-    ball.update();
-    ball.collisionDetect();
+
+    if(ball.exists == true ){
+      ball.draw();
+      ball.update();
+      ball.collisionDetect();
+
     }
+    }
+    evil.draw();
+    evil.checkBounds();
+    evil.collisionDetect();
   requestAnimationFrame(loop);
 }
 
