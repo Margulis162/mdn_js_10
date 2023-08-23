@@ -71,7 +71,7 @@ class Ball extends  Shape{
   collisionDetect(){
     for (const ball of balls){
       // makes sure we are checking for a different ball 
-      if(this !== ball) {
+      if(!(this === ball) && ball.exists) {
         // standart collision detection method for two circles 
         const dx = this.x -ball.x;
         const dy = this.y -ball.y;
