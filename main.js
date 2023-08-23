@@ -96,9 +96,9 @@ while (balls.length < 25) {
     randomRGB(),
     size,
     );
-    console.log(ball);
+    
     balls.push(ball);
-  
+
 }
 
 function loop() {
