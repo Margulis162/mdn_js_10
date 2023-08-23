@@ -39,6 +39,7 @@ class Ball extends  Shape{
     super( x, y, velX, velY);
     this.color = color;
     this.size = size;
+    this.exists = true;
   }
   draw(){
     ctx.beginPath();
