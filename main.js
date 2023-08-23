@@ -20,18 +20,23 @@ function random(min, max) {
 // }
 const nonRandColors =[255, 127, 85, 51, 32, 20 ];
 function randomRGB() {
-  return `rgb(${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]},${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]},${nonRandColors[Math.floor(Math.random() * nonRandColors.length)]})`;
+  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+}
 
+class Shape{
+  constructor(x, y, velX, velY){
+    this.x = x;
+    this.y = y;
+    this.velX = velX;
+    this.velY = velY; 
+  }
 }
 
 
 
-class Ball{
-  constructor(x,y, velX, velY, color, size){
-    this.x = x;
-    this.y = y;
-    this.velX = velX;
-    this.velY = velY;
+class Ball extends  Shape{
+  constructor(x, y, velX, velY, color, size){
+    super( x, y, velX, velY);
     this.color = color;
     this.size = size;
   }
@@ -90,7 +95,7 @@ while (balls.length < 25) {
     randomRGB(),
     size,
     );
-
+    console.log(ball);
     balls.push(ball);
   
 }
